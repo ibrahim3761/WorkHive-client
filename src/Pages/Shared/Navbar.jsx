@@ -55,7 +55,7 @@ const Navbar = () => {
       {/* Left: Logo and Mobile Hamburger */}
       <div className="navbar-start">
         {/* Mobile Dropdown */}
-        <div className="dropdown lg:hidden">
+        <div className="dropdown lg:hidden -ml-6">
           <div tabIndex={0} role="button" className="btn btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
