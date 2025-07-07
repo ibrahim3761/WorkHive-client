@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 // Placeholder user state; replace with AuthContext when ready
-const user = { name: "Ibrahim", coins: 120 }; // Replace with { name: "Ibrahim", coins: 120 } to test logged-in state
+
 
 const Navbar = () => {
+    const {user} = useAuth();
   const handleLogOut = () => {
     console.log("Logout clicked");
     // Replace with your Firebase logout logic

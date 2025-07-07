@@ -11,7 +11,7 @@ const Banner = () => {
     <div className="w-full min-h-[80vh] px-2 md:px-8 py-6 md:py-10 overflow-hidden">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
-        navigation
+        navigation={{clickable: true}}
         pagination={{
           clickable: true,
           bulletClass: "swiper-pagination-bullet custom-bullet",
