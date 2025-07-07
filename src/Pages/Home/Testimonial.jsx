@@ -33,7 +33,7 @@ const testimonials = [
 
 const Testimonial = () => {
   return (
-    <div className="w-full py-16 bg-blue-50">
+    <div className="w-full py-10 bg-blue-50">
       <h2 className="text-3xl font-bold text-center mb-10 text-blue-900">
         What Our Users Say
       </h2>
@@ -54,11 +54,11 @@ const Testimonial = () => {
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="max-w-6xl mx-auto px-4"
+        className="md:max-w-[1450px] h-56 px-10"
       >
         {testimonials.map((testimonial, i) => (
           <SwiperSlide key={i}>
-            <div className="bg-white shadow-lg p-6 rounded-xl text-center h-full hover:shadow-xl transition-all duration-300">
+            <div className="bg-white shadow-lg p-6 mx-2 md:mx-0 rounded-xl text-center h-full hover:shadow-xl transition-all duration-300">
               <img
                 src={testimonial.image}
                 alt={testimonial.name}
