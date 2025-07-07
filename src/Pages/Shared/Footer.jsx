@@ -59,7 +59,7 @@ const Footer = () => {
               <Linkedin size={22} />
             </a>
             <a
-              href="https://github.com/your-username"
+              href="https://github.com/ibrahim3761"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-yellow-400 transition"
