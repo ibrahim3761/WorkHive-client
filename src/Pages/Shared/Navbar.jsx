@@ -1,12 +1,37 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 // Placeholder user state; replace with AuthContext when ready
 
-
 const Navbar = () => {
-    const {user} = useAuth();
+  const { user } = useAuth();
+  const axiosSecure = useAxios();
+
+  const {
+    data: userData = {},
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["user", user?.email],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return <div className="text-center py-10">Loading profile...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className="text-center text-red-500">Failed to load profile.</div>
+    );
+  }
   const handleLogOut = () => {
     console.log("Logout clicked");
     // Replace with your Firebase logout logic
@@ -31,7 +56,7 @@ const Navbar = () => {
           <li>
             <span className="text-blue-900 hover:text-yellow-500 pb-1 font-semibold flex items-center">
               Coins:
-              <span className="ml-1 text-yellow-500">{user.coins || "--"}</span>
+              <span className="ml-1 text-yellow-500">{userData?.coins || "--"}</span>
             </span>
           </li>
 
@@ -111,7 +136,7 @@ const Navbar = () => {
             )}
             <li>
               <a
-                href="https://github.com/your-client-repo"
+                href="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-ibrahim3761"
                 target="_blank"
                 rel="noreferrer"
                 className="btn bg-blue-900 text-yellow-400 w-full mt-1"
@@ -162,7 +187,7 @@ const Navbar = () => {
           </button>
         )}
         <a
-          href="https://github.com/your-client-repo"
+          href="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-ibrahim3761"
           target="_blank"
           rel="noreferrer"
           className="btn bg-blue-900 text-yellow-400"
