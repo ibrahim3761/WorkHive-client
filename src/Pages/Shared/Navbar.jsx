@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 // Placeholder user state; replace with AuthContext when ready
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const axiosSecure = useAxios();
 
   const {
@@ -33,8 +33,13 @@ const Navbar = () => {
     );
   }
   const handleLogOut = () => {
-    console.log("Logout clicked");
-    // Replace with your Firebase logout logic
+    logOut()
+      .then(() => {
+        console.log("User signed out successfully");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error.message);
+      });
   };
 
   const navLinks = (
@@ -56,7 +61,9 @@ const Navbar = () => {
           <li>
             <span className="text-blue-900 hover:text-yellow-500 pb-1 font-semibold flex items-center">
               Coins:
-              <span className="ml-1 text-yellow-500">{userData?.coins || "--"}</span>
+              <span className="ml-1 text-yellow-500">
+                {userData?.coins || "--"}
+              </span>
             </span>
           </li>
 
