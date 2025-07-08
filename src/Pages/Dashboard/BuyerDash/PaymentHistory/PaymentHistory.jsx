@@ -17,7 +17,13 @@ const PaymentHistory = () => {
     },
   });
 
-  if (isLoading) return <div className="text-center py-10">Loading payment history...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 md:p-6">
@@ -33,6 +39,7 @@ const PaymentHistory = () => {
                 <th>#</th>
                 <th>Coins</th>
                 <th>Amount</th>
+                <th>Type</th>
                 <th>Transaction ID</th>
                 <th>Date</th>
               </tr>
@@ -43,6 +50,7 @@ const PaymentHistory = () => {
                   <td>{idx + 1}</td>
                   <td>{payment.coinsPurchased}</td>
                   <td>${payment.amountPaid}</td>
+                  <td>{payment.type || "N/A"}</td>
                   <td className="text-xs break-all">{payment.transactionId}</td>
                   <td>{new Date(payment.date).toLocaleString()}</td>
                 </tr>

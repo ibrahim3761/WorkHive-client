@@ -81,6 +81,7 @@ const PurchaseForm = () => {
         amountPaid: selected.price,
         transactionId: result.paymentIntent.id,
         paymentMethod: result.paymentIntent.payment_method_types,
+        type:"Coin Purchase",
         date: new Date(),
       };
 

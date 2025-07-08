@@ -9,6 +9,7 @@ import DashBoardLayout from "../Layouts/DashBoardLayout";
 import DashaordHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import PuchaseCoin from "../Pages/Dashboard/BuyerDash/PurchaseCoin/PuchaseCoin";
 import PaymentHistory from "../Pages/Dashboard/BuyerDash/PaymentHistory/PaymentHistory";
+import AddTask from "../Pages/Dashboard/BuyerDash/AddTask/AddTask";
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path:"payment-history",
                 element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: "add-task",
+                element: <AddTask></AddTask>
             }
         ]
     }
