@@ -48,7 +48,7 @@ const PaymentHistory = () => {
               {payments.map((payment, idx) => (
                 <tr key={payment._id}>
                   <td>{idx + 1}</td>
-                  <td>{payment.coinsPurchased}</td>
+                  <td>{payment.coins}</td>
                   <td>${payment.amountPaid}</td>
                   <td>{payment.type || "N/A"}</td>
                   <td className="text-xs break-all">{payment.transactionId}</td>

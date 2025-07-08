@@ -5,13 +5,14 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddTask = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState("");
-
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -25,7 +26,9 @@ const AddTask = () => {
     formData.append("image", image);
 
     const res = await axios.post(
-      `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`,
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_image_upload_key
+      }`,
       formData
     );
 
@@ -66,11 +69,14 @@ const AddTask = () => {
     const res = await axiosSecure.post("/tasks", task);
 
     if (res.data.insertedId) {
-      // Reduce coins
-      await axiosSecure.patch(`/users/deduct-coins`, {
+      await axiosSecure.patch("/users/deduct-coins", {
         email: user.email,
         amount: totalPay,
+        coins: totalPay,
+        taskId: res.data.insertedId,
       });
+
+      await queryClient.invalidateQueries({ queryKey: ["userInfo", user.email] });
 
       Swal.fire({
         icon: "success",
@@ -84,9 +90,12 @@ const AddTask = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="max-w-3xl mx-auto px-4">
       <h2 className="text-3xl font-bold mb-6 text-blue-800">Add New Task</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 bg-white p-6 rounded-xl shadow-lg">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 bg-white p-6 rounded-xl shadow-lg"
+      >
         <div>
           <label className="label">Task Title</label>
           <input
@@ -152,7 +161,11 @@ const AddTask = () => {
             className="file-input file-input-bordered w-full"
           />
           {imageUrl && (
-            <img src={imageUrl} alt="Uploaded" className="w-32 h-20 mt-2 rounded shadow" />
+            <img
+              src={imageUrl}
+              alt="Uploaded"
+              className="w-32 h-20 mt-2 rounded shadow"
+            />
           )}
         </div>
 
