@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
-
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -14,18 +14,47 @@ const Login = () => {
 
   const { signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const axiosInstance = useAxios();
 
   const onSubmit = (data) => {
     signIn(data.email, data.password)
       .then(async (result) => {
         console.log("User logged in successfully:", result.user);
+         Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "Welcome back!",
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+        const userInfo = {
+          email: data.email,
+        };
 
-        navigate(location.state || "/");
+        navigate("/dashboard");
+        await axiosInstance.post("/users", userInfo);
       })
       .catch((error) => {
         console.error("Login failed:", error.message);
+        console.error("Login failed full error:", error);
+        console.error("Error code:", error.code);
+        console.error("Error message:", error.message);
+
+        if (error.code === "auth/invalid-credential") {
+          Swal.fire({
+            icon: "error",
+            title: "Invalid Email",
+            text: "Please enter a valid email & password.",
+            toast: true,
+            position: "top-start",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
+        } 
       });
   };
 
@@ -43,12 +72,21 @@ const Login = () => {
           created_at: new Date().toISOString(),
           last_log_in: new Date().toISOString(),
         };
-
+        navigate("/dashboard");
         await axiosInstance.post("/users", userInfo);
-        navigate(location.state || "/");
       })
       .catch((error) => {
         console.error("Google login failed:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Something went wrong. Please try again.",
+          toast: true,
+          position: "top-start",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
       });
   };
 

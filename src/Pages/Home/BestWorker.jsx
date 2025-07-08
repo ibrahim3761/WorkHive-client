@@ -5,7 +5,11 @@ import useAxios from "../../Hooks/useAxios";
 const BestWorker = () => {
   const axiosInstance = useAxios();
 
-  const { data: workers = [], isLoading, isError } = useQuery({
+  const {
+    data: workers = [],
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["bestWorkers"],
     queryFn: async () => {
       const res = await axiosInstance.get("/best-workers");
@@ -15,8 +19,8 @@ const BestWorker = () => {
 
   if (isLoading) {
     return (
-      <div className="text-center text-blue-900 my-12">
-        Loading best workers...
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
       </div>
     );
   }
@@ -39,13 +43,16 @@ const BestWorker = () => {
         <p className="text-center text-gray-500">No workers found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {workers.map(worker => (
+          {workers.map((worker) => (
             <div
               key={worker._id}
               className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center hover:shadow-lg transition"
             >
               <img
-                src={worker.photo || "https://i.ibb.co/khTb8Xm/user-placeholder.png"}
+                src={
+                  worker.photo ||
+                  "https://i.ibb.co/khTb8Xm/user-placeholder.png"
+                }
                 alt={worker.name}
                 className="w-24 h-24 rounded-full object-cover border-4 border-yellow-400 mb-4"
               />

@@ -10,7 +10,7 @@ import logo from "../../assets/WorkHiveLogo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-900 text-white px-4 py-12 mt-20">
+    <footer className="bg-blue-900 text-white px-4 py-12 mt-10">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* Logo + About */}
