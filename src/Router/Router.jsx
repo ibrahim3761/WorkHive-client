@@ -11,6 +11,8 @@ import PuchaseCoin from "../Pages/Dashboard/BuyerDash/PurchaseCoin/PuchaseCoin";
 import PaymentHistory from "../Pages/Dashboard/BuyerDash/PaymentHistory/PaymentHistory";
 import AddTask from "../Pages/Dashboard/BuyerDash/AddTask/AddTask";
 import MyTasks from "../Pages/Dashboard/BuyerDash/MyTasks/MyTasks";
+import TaskList from "../Pages/Dashboard/WorkerDash/TaskList/TaskList";
+import MySubmissions from "../Pages/Dashboard/WorkerDash/MySubmission/MySumissions";
 
 export const router = createBrowserRouter([
     {
@@ -59,6 +61,15 @@ export const router = createBrowserRouter([
             {
                 path: "my-tasks",
                 element: <MyTasks></MyTasks>
+            },
+            // worker routes
+            {
+                path: "tasklist",
+                element: <TaskList></TaskList>
+            },
+            {
+                path: "my-submissions",
+                element: <MySubmissions></MySubmissions>
             }
         ]
     }

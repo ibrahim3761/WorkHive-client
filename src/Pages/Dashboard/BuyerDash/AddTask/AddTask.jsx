@@ -60,6 +60,7 @@ const AddTask = () => {
       completion_date: data.completion_date,
       submission_info: data.submission_info,
       task_image_url: imageUrl,
+      buyer_name: user.displayName,
       created_by: user.email,
       status: "open",
       created_at: new Date(),
