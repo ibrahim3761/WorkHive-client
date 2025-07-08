@@ -7,7 +7,8 @@ import Profile from "../Pages/Profile/Profile";
 import PrivateRoutes from "../Provider/PrivateRoutes";
 import DashBoardLayout from "../Layouts/DashBoardLayout";
 import DashaordHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
-import PuchaseCoin from "../Pages/Dashboard/BuyerDash/PuchaseCoin";
+import PuchaseCoin from "../Pages/Dashboard/BuyerDash/PurchaseCoin/PuchaseCoin";
+import PaymentHistory from "../Pages/Dashboard/BuyerDash/PaymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -40,9 +41,14 @@ export const router = createBrowserRouter([
                 index:true,
                 Component: DashaordHome
             },
+            // buyer routes
             {
                 path:"purchase-coin",
                 element: <PuchaseCoin></PuchaseCoin>
+            },
+            {
+                path:"payment-history",
+                element: <PaymentHistory></PaymentHistory>
             }
         ]
     }
