@@ -72,7 +72,7 @@ const AddTask = () => {
     if (res.data.insertedId) {
       await axiosSecure.patch("/users/deduct-coins", {
         email: user.email,
-        amount: totalPay,
+        amount: totalPay/10,
         coins: totalPay,
         taskId: res.data.insertedId,
       });

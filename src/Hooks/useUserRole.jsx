@@ -23,7 +23,7 @@ const useUserRole = () => {
   console.log(userInfo.role);
   
 
-  return {  role: userInfo.role || "user", isLoading: isPending || isLoading, isError };
+  return {  role: userInfo?.role, isLoading: isPending || isLoading, isError };
 };
 
 export default useUserRole;

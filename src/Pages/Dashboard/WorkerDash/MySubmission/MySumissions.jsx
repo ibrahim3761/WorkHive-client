@@ -68,7 +68,7 @@ const MySubmissions = () => {
                   </span>
                 </td>
                 <td className="font-medium text-blue-800">
-                  ${submission.payable_amount}
+                  ${(submission.payable_amount / 10).toFixed(2)}
                 </td>
               </tr>
             ))}
