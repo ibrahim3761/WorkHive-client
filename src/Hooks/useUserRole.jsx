@@ -7,7 +7,7 @@ const useUserRole = () => {
   const axiosSecure = useAxiosSecure();
 
   const {
-    data: role = "user",
+    data: userInfo = {},
     isPending,
     isLoading,
     isError,
@@ -15,12 +15,15 @@ const useUserRole = () => {
     queryKey: ["user-role", user?.email],
     enabled: !!user?.email && !loading, // only fetch when email is available
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/${user.email}/role`);
-      return res.data.role;
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
     },
   });
 
-  return { role, isLoading: isPending || isLoading, isError };
+  console.log(userInfo.role);
+  
+
+  return {  role: userInfo.role || "user", isLoading: isPending || isLoading, isError };
 };
 
 export default useUserRole;

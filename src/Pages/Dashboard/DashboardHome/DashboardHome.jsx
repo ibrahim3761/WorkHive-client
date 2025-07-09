@@ -1,16 +1,22 @@
 import React from 'react';
 import useUserRole from '../../../Hooks/useUserRole';
 import BuyerDashHome from './BuyerDashHome/BuyerDashHome';
+import WorkerDashHome from './WorkerDashHome/WorkerDashHome';
 
 const DashboardHome = () => {
-  const { role, isLoading } = useUserRole();
+  const { role } = useUserRole();
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+    console.log(role);
+    
 
   return (
     <div>
-      {!isLoading && role === 'buyer' && <BuyerDashHome />}
+      { role === 'Buyer' && (<BuyerDashHome />)}
+      {
+        role === 'Worker' &&( <WorkerDashHome></WorkerDashHome>)
+      }
     </div>
+    
   );
 };
 

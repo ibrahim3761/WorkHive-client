@@ -13,6 +13,7 @@ import AddTask from "../Pages/Dashboard/BuyerDash/AddTask/AddTask";
 import MyTasks from "../Pages/Dashboard/BuyerDash/MyTasks/MyTasks";
 import TaskList from "../Pages/Dashboard/WorkerDash/TaskList/TaskList";
 import MySubmissions from "../Pages/Dashboard/WorkerDash/MySubmission/MySumissions";
+import WithdrawRequest from "../Pages/Dashboard/WorkerDash/WithdrawRequest/WithdrawRequest";
 
 export const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
             {
                 path: "my-submissions",
                 element: <MySubmissions></MySubmissions>
+            },
+            {
+                path:"withdrawals",
+                element: <WithdrawRequest></WithdrawRequest>
             }
         ]
     }
