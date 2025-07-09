@@ -39,7 +39,7 @@ const TaskList = () => {
       worker_email: user.email,
       worker_name: user.displayName,
       buyer_name: selectedTask.buyer_name,
-      buyer_email: selectedTask.buyer_email,
+      buyer_email: selectedTask.created_by,
       submission_details: submissionDetail,
       current_date: new Date(),
       status: "pending",
