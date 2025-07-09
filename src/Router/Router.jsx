@@ -14,6 +14,8 @@ import MyTasks from "../Pages/Dashboard/BuyerDash/MyTasks/MyTasks";
 import TaskList from "../Pages/Dashboard/WorkerDash/TaskList/TaskList";
 import MySubmissions from "../Pages/Dashboard/WorkerDash/MySubmission/MySumissions";
 import WithdrawRequest from "../Pages/Dashboard/WorkerDash/WithdrawRequest/WithdrawRequest";
+import ManageUsers from "../Pages/Dashboard/AdminDash/ManageUsers/ManageUsers";
+import ManageTasks from "../Pages/Dashboard/AdminDash/ManageTasks/ManageTasks";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +77,15 @@ export const router = createBrowserRouter([
             {
                 path:"withdrawals",
                 element: <WithdrawRequest></WithdrawRequest>
+            },
+            // admin routes
+            {
+                path: "manage-users",
+                element:<ManageUsers></ManageUsers>
+            },
+            {
+                path: "manage-tasks",
+                element: <ManageTasks></ManageTasks>
             }
         ]
     }

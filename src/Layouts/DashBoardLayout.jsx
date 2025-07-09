@@ -4,11 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import Footer from "../Pages/Shared/Footer";
 import { Bell } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
-import useAxios from "../Hooks/useAxios";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const DashBoardLayout = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   const { data: userInfo = {}, isLoading } = useQuery({
     queryKey: ["userInfo", user?.email],
