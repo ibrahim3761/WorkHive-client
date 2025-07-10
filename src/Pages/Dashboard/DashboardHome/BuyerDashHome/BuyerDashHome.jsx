@@ -72,8 +72,13 @@ const BuyerDashHome = () => {
     },
   });
 
-  if (statsLoading || subLoading)
-    return <p className="text-center py-10">Loading...</p>;
+  if (statsLoading || subLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 space-y-8">

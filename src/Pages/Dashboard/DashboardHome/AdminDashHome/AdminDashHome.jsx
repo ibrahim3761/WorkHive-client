@@ -39,7 +39,13 @@ const AdminDashHome = () => {
     },
   });
 
-  if (statsLoading || withdrawLoading) return <p className="text-center py-10">Loading...</p>;
+  if (statsLoading || withdrawLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 space-y-10">

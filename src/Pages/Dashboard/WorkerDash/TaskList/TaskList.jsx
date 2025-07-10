@@ -58,7 +58,13 @@ const TaskList = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center p-6">Loading tasks...</p>;
+ if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4">

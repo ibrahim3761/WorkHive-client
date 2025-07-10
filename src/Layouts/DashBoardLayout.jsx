@@ -31,7 +31,9 @@ const DashBoardLayout = () => {
     if (user?.email) {
       const fetchNotifications = async () => {
         try {
-          const res = await axiosSecure.get(`/notifications?email=${user.email}`);
+          const res = await axiosSecure.get(
+            `/notifications?email=${user.email}`
+          );
           const newData = res.data.slice(0, 4); // latest 4 only
 
           if (
@@ -62,6 +64,14 @@ const DashBoardLayout = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -69,8 +79,19 @@ const DashBoardLayout = () => {
         <div className="w-full bg-white shadow px-4 py-3 flex justify-between items-center">
           <div className="lg:hidden">
             <label htmlFor="my-drawer-2" className="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </label>
           </div>
@@ -85,7 +106,11 @@ const DashBoardLayout = () => {
                 </div>
                 <div className="avatar">
                   <div className="w-10 h-10 rounded-full ring ring-yellow-300 ring-offset-base-100 ring-offset-2">
-                    <img src={userInfo.photo || "https://i.ibb.co/4pDNDk1/avatar.png"} />
+                    <img
+                      src={
+                        userInfo.photo || "https://i.ibb.co/4pDNDk1/avatar.png"
+                      }
+                    />
                   </div>
                 </div>
 
@@ -111,15 +136,21 @@ const DashBoardLayout = () => {
                       className="absolute right-0 top-12 w-80 max-h-96 overflow-y-auto bg-white border shadow-lg rounded-lg z-50 p-4 space-y-2"
                     >
                       {notifications.length === 0 ? (
-                        <p className="text-center text-gray-500">No notifications</p>
+                        <p className="text-center text-gray-500">
+                          No notifications
+                        </p>
                       ) : (
                         notifications.map((note, idx) => (
                           <div
                             key={idx}
                             className="block p-2 rounded hover:bg-blue-50 cursor-default"
                           >
-                            <p className="text-sm text-gray-800">{note.message}</p>
-                            <p className="text-xs text-gray-400">{new Date(note.time).toLocaleString()}</p>
+                            <p className="text-sm text-gray-800">
+                              {note.message}
+                            </p>
+                            <p className="text-xs text-gray-400">
+                              {new Date(note.time).toLocaleString()}
+                            </p>
                           </div>
                         ))
                       )}
@@ -148,27 +179,53 @@ const DashBoardLayout = () => {
             </Link>
           </div>
           <li>
-            <NavLink to="/dashboard" end>🏠 Home</NavLink>
+            <NavLink to="/dashboard" end>
+              🏠 Home
+            </NavLink>
           </li>
           {!isLoading && role === "Worker" && (
             <>
-              <li><NavLink to="/dashboard/tasklist">📋 Task List</NavLink></li>
-              <li><NavLink to="/dashboard/my-submissions">✅ My Submissions</NavLink></li>
-              <li><NavLink to="/dashboard/withdrawals">💳 Withdrawals</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/tasklist">📋 Task List</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-submissions">
+                  ✅ My Submissions
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/withdrawals">💳 Withdrawals</NavLink>
+              </li>
             </>
           )}
           {!isLoading && role === "Buyer" && (
             <>
-              <li><NavLink to="/dashboard/add-task">📝 Add New Task</NavLink></li>
-              <li><NavLink to="/dashboard/my-tasks">📂 My Tasks</NavLink></li>
-              <li><NavLink to="/dashboard/purchase-coin">💰 Purchase Coin</NavLink></li>
-              <li><NavLink to="/dashboard/payment-history">📑 Payment History</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/add-task">📝 Add New Task</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/my-tasks">📂 My Tasks</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/purchase-coin">
+                  💰 Purchase Coin
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/payment-history">
+                  📑 Payment History
+                </NavLink>
+              </li>
             </>
           )}
           {!isLoading && role === "Admin" && (
             <>
-              <li><NavLink to="/dashboard/manage-users">👥 Manage Users</NavLink></li>
-              <li><NavLink to="/dashboard/manage-tasks">🛠️ Manage Tasks</NavLink></li>
+              <li>
+                <NavLink to="/dashboard/manage-users">👥 Manage Users</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-tasks">🛠️ Manage Tasks</NavLink>
+              </li>
             </>
           )}
         </ul>

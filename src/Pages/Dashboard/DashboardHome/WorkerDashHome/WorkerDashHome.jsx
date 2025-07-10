@@ -16,7 +16,13 @@ const WorkerDashHome = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   const totalSubmissions = submissions.length;
   const pendingCount = submissions.filter((s) => s.status === "pending").length;

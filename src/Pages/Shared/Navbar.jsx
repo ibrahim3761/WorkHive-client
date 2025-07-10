@@ -4,7 +4,6 @@ import useAuth from "../../Hooks/useAuth";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-
 // Placeholder user state; replace with AuthContext when ready
 
 const Navbar = () => {
@@ -29,7 +28,11 @@ const Navbar = () => {
   console.log(isError);
 
   if (isLoading) {
-    return <div className="text-center py-10">Loading profile...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
   }
 
   if (isError) {
@@ -37,7 +40,7 @@ const Navbar = () => {
       <div className="text-center text-red-500">Failed to load profile.</div>
     );
   }
-  
+
   const handleLogOut = () => {
     logOut()
       .then(() => {

@@ -30,7 +30,13 @@ const MySubmissions = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center py-6">Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-auto p-4">

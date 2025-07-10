@@ -51,7 +51,13 @@ const ManageTasks = () => {
     });
   };
 
-  if (isLoading) return <p className="text-center py-10">Loading tasks...</p>;
+ if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">
