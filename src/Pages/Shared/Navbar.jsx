@@ -1,15 +1,18 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../Hooks/useAuth";
-import useAxios from "../../Hooks/useAxios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
 
 // Placeholder user state; replace with AuthContext when ready
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
 
+  console.log(user?.email);
   const {
     data: userData = {},
     isLoading,
@@ -23,6 +26,8 @@ const Navbar = () => {
     },
   });
 
+  console.log(isError);
+
   if (isLoading) {
     return <div className="text-center py-10">Loading profile...</div>;
   }
@@ -32,10 +37,12 @@ const Navbar = () => {
       <div className="text-center text-red-500">Failed to load profile.</div>
     );
   }
+  
   const handleLogOut = () => {
     logOut()
       .then(() => {
         console.log("User signed out successfully");
+        queryClient.clear();
       })
       .catch((error) => {
         console.error("Error signing out:", error.message);

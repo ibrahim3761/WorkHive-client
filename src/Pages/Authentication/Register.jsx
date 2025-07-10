@@ -15,7 +15,6 @@ const Register = () => {
 
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
   const axiosInstance = useAxios();
 
   const [profilePic, setProfilePic] = useState("");
@@ -49,7 +48,7 @@ const Register = () => {
         });
 
         Swal.fire("Success!", "Account created successfully", "success");
-        navigate(location.state || "/");
+        navigate("/dashboard");
       }
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {

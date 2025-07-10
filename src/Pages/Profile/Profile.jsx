@@ -1,11 +1,11 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
-import useAxios from "../../Hooks/useAxios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Profile = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxios();
+  const axiosSecure = useAxiosSecure()
 
   const { data: userData = {}, isLoading, isError } = useQuery({
     queryKey: ["user", user?.email],

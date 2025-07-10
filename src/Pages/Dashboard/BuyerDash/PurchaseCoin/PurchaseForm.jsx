@@ -77,7 +77,7 @@ const PurchaseForm = () => {
 
       const paymentData = {
         email: user.email,
-        coinsPurchased: selected.coins,
+        coins: selected.coins,
         amountPaid: selected.price,
         transactionId: result.paymentIntent.id,
         paymentMethod: result.paymentIntent.payment_method_types,
