@@ -16,6 +16,10 @@ import MySubmissions from "../Pages/Dashboard/WorkerDash/MySubmission/MySumissio
 import WithdrawRequest from "../Pages/Dashboard/WorkerDash/WithdrawRequest/WithdrawRequest";
 import ManageUsers from "../Pages/Dashboard/AdminDash/ManageUsers/ManageUsers";
 import ManageTasks from "../Pages/Dashboard/AdminDash/ManageTasks/ManageTasks";
+import Forbidden from "../Pages/Forbidden/Forbidden";
+import BuyerRoutes from "../Provider/BuyerRoutes";
+import AdminRoutes from "../Provider/AdminRoutes";
+import WorkerRoutes from "../Provider/WorkerRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -37,6 +41,10 @@ export const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
+            },
+            {
+                path:"forbidden",
+                Component: Forbidden
             }
         ]
     },
@@ -51,41 +59,41 @@ export const router = createBrowserRouter([
             // buyer routes
             {
                 path:"purchase-coin",
-                element: <PuchaseCoin></PuchaseCoin>
+                element: <BuyerRoutes><PuchaseCoin></PuchaseCoin></BuyerRoutes>
             },
             {
                 path:"payment-history",
-                element: <PaymentHistory></PaymentHistory>
+                element: <BuyerRoutes><PaymentHistory></PaymentHistory></BuyerRoutes>
             },
             {
                 path: "add-task",
-                element: <AddTask></AddTask>
+                element: <BuyerRoutes><AddTask></AddTask></BuyerRoutes>
             },
             {
                 path: "my-tasks",
-                element: <MyTasks></MyTasks>
+                element: <BuyerRoutes><MyTasks></MyTasks></BuyerRoutes>
             },
             // worker routes
             {
                 path: "tasklist",
-                element: <TaskList></TaskList>
+                element:<WorkerRoutes><TaskList></TaskList></WorkerRoutes>
             },
             {
                 path: "my-submissions",
-                element: <MySubmissions></MySubmissions>
+                element: <WorkerRoutes><MySubmissions></MySubmissions></WorkerRoutes>
             },
             {
                 path:"withdrawals",
-                element: <WithdrawRequest></WithdrawRequest>
+                element: <WorkerRoutes><WithdrawRequest></WithdrawRequest></WorkerRoutes>
             },
             // admin routes
             {
                 path: "manage-users",
-                element:<ManageUsers></ManageUsers>
+                element:<AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
             },
             {
                 path: "manage-tasks",
-                element: <ManageTasks></ManageTasks>
+                element: <AdminRoutes><ManageTasks></ManageTasks></AdminRoutes>
             }
         ]
     }
