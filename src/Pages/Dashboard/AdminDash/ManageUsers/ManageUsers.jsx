@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useAuth from "../../../../Hooks/useAuth";
 
 const roles = ["Admin", "Buyer", "Worker"];
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const { user: loggedInUser } = useAuth();
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch all users
   const { data: users = [], isLoading } = useQuery({
@@ -40,6 +43,11 @@ const ManageUsers = () => {
     },
   });
 
+  // Filtered users based on search
+  const filteredUsers = users.filter((u) =>
+    `${u.name} ${u.email}`.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -51,6 +59,18 @@ const ManageUsers = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-blue-900 mb-4">Manage Users</h2>
+
+      {/* 🔍 Search Bar */}
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by name or email..."
+          className="input input-bordered w-full max-w-sm"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
       <div className="overflow-x-auto">
         <table className="table w-full bg-white rounded-xl shadow">
           <thead className="bg-blue-100 text-blue-900">
@@ -65,61 +85,94 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, idx) => (
-              <tr key={user._id}>
-                <td>{idx + 1}</td>
-                <td>
-                  <img
-                    src={user.photo}
-                    alt="profile"
-                    className="w-10 h-10 rounded-full"
-                  />
-                </td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  <select
-                    className="select select-bordered select-sm"
-                    value={user.role}
-                    onChange={(e) =>
-                      updateRoleMutation.mutate({
-                        id: user._id,
-                        role: e.target.value,
-                      })
-                    }
-                  >
-                    {roles.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td>{user.coins}</td>
-                <td>
-                  <button
-                    className="btn btn-xs bg-red-500 text-white"
-                    onClick={() => {
-                      Swal.fire({
-                        title: "Are you sure?",
-                        text: "This action cannot be undone!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#d33",
-                        cancelButtonColor: "#3085d6",
-                        confirmButtonText: "Yes, delete it!",
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          deleteUserMutation.mutate(user._id);
-                        }
-                      });
-                    }}
-                  >
-                    Remove
-                  </button>
+            {filteredUsers.length === 0 ? (
+              <tr>
+                <td colSpan="7" className="text-center py-4 text-gray-500">
+                  No users found.
                 </td>
               </tr>
-            ))}
+            ) : (
+              filteredUsers.map((user, idx) => {
+                const isSelf = loggedInUser?.email === user.email;
+
+                return (
+                  <tr key={user._id}>
+                    <td>{idx + 1}</td>
+                    <td>
+                      <img
+                        src={user.photo}
+                        alt="profile"
+                        className="w-10 h-10 rounded-full"
+                      />
+                    </td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <select
+                        className="select select-bordered select-sm"
+                        value={user.role}
+                        disabled={isSelf && user.role === "Admin"}
+                        title={
+                          isSelf && user.role === "Admin"
+                            ? "You cannot change your own role."
+                            : "Change user role"
+                        }
+                        onChange={(e) =>
+                          updateRoleMutation.mutate({
+                            id: user._id,
+                            role: e.target.value,
+                          })
+                        }
+                      >
+                        {roles.map((r) => (
+                          <option key={r} value={r}>
+                            {r}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>{user.coins}</td>
+                    <td>
+                      <button
+                        className="btn btn-xs bg-red-500 text-white"
+                        disabled={isSelf}
+                        title={
+                          isSelf
+                            ? "You cannot remove your own account."
+                            : "Remove user"
+                        }
+                        onClick={() => {
+                          if (isSelf) {
+                            Swal.fire(
+                              "Action Blocked",
+                              "You cannot remove your own account.",
+                              "warning"
+                            );
+                            return;
+                          }
+
+                          Swal.fire({
+                            title: "Are you sure?",
+                            text: "This action cannot be undone!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#d33",
+                            cancelButtonColor: "#3085d6",
+                            confirmButtonText: "Yes, delete it!",
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              deleteUserMutation.mutate(user._id);
+                            }
+                          });
+                        }}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </div>
