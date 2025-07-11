@@ -76,7 +76,7 @@ const ManageTasks = () => {
                 <th>Title</th>
                 <th>Buyer</th>
                 <th className="text-center">Workers</th>
-                <th className="text-center">Pay/Worker</th>
+                <th className="text-center">Pay/Worker(Coins)</th>
                 <th className="text-center">Deadline</th>
                 <th className="text-center">Delete</th>
               </tr>
@@ -88,7 +88,7 @@ const ManageTasks = () => {
                   <td className="font-medium">{task.task_title}</td>
                   <td>{task.created_by}</td>
                   <td className="text-center">{task.required_workers}</td>
-                  <td className="text-center">${task.payable_amount}</td>
+                  <td className="text-center">{task.payable_amount}</td>
                   <td className="text-center">
                     {new Date(task.completion_date).toLocaleDateString()}
                   </td>
