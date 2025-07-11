@@ -2,12 +2,13 @@ import React from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import { Trash2 } from 'lucide-react';
 
 const ManageTasks = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  // Get all tasks
+  // Fetch all tasks
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ['allTasks'],
     queryFn: async () => {
@@ -16,14 +17,11 @@ const ManageTasks = () => {
     }
   });
 
-  // Delete Task
+  // Delete task mutation
   const deleteTaskMutation = useMutation({
     mutationFn: async ({ id, email, refundAmount }) => {
       return await axiosSecure.delete(`/task/admin/${id}`, {
-        data: {
-          email,
-          refundAmount,
-        },
+        data: { email, refundAmount },
       });
     },
     onSuccess: () => {
@@ -38,7 +36,7 @@ const ManageTasks = () => {
 
     Swal.fire({
       title: 'Are you sure?',
-      text: `This task will be permanently deleted and refund ${refundAmount} coins to the buyer.`,
+      text: `This will delete the task and refund ${refundAmount} coins.`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -51,7 +49,7 @@ const ManageTasks = () => {
     });
   };
 
- if (isLoading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <span className="loading loading-spinner loading-xl"></span>
@@ -60,43 +58,55 @@ const ManageTasks = () => {
   }
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-blue-900 mb-4">Manage Tasks</h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full bg-white rounded-xl shadow">
-          <thead className="bg-blue-100 text-blue-900">
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Buyer</th>
-              <th>Workers</th>
-              <th>Pay/Worker</th>
-              <th>Deadline</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tasks.map((task, idx) => (
-              <tr key={task._id}>
-                <td>{idx + 1}</td>
-                <td>{task.task_title}</td>
-                <td>{task.created_by}</td>
-                <td>{task.required_workers}</td>
-                <td>${task.payable_amount}</td>
-                <td>{new Date(task.completion_date).toLocaleDateString()}</td>
-                <td>
-                  <button
-                    className="btn btn-xs bg-red-500 text-white"
-                    onClick={() => handleDelete(task)}
-                  >
-                    Delete
-                  </button>
-                </td>
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
+        Manage All Tasks
+      </h2>
+
+      {tasks.length === 0 ? (
+        <div className="text-center text-gray-500 mt-20">
+          <p className="text-xl">🚫 No tasks available.</p>
+        </div>
+      ) : (
+        <div className="overflow-x-auto bg-white rounded-xl shadow">
+          <table className="table w-full">
+            <thead className="bg-blue-100 text-blue-900 text-left">
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Buyer</th>
+                <th className="text-center">Workers</th>
+                <th className="text-center">Pay/Worker</th>
+                <th className="text-center">Deadline</th>
+                <th className="text-center">Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {tasks.map((task, idx) => (
+                <tr key={task._id} className="hover:bg-blue-50 align-middle">
+                  <td>{idx + 1}</td>
+                  <td className="font-medium">{task.task_title}</td>
+                  <td>{task.created_by}</td>
+                  <td className="text-center">{task.required_workers}</td>
+                  <td className="text-center">${task.payable_amount}</td>
+                  <td className="text-center">
+                    {new Date(task.completion_date).toLocaleDateString()}
+                  </td>
+                  <td className="text-center">
+                    <button
+                      onClick={() => handleDelete(task)}
+                      className="btn btn-sm bg-red-500 hover:bg-red-600 text-white flex items-center justify-center gap-1 mx-auto"
+                    >
+                      <Trash2 size={16} />
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
