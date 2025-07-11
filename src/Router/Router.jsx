@@ -20,11 +20,13 @@ import Forbidden from "../Pages/Forbidden/Forbidden";
 import BuyerRoutes from "../Provider/BuyerRoutes";
 import AdminRoutes from "../Provider/AdminRoutes";
 import WorkerRoutes from "../Provider/WorkerRoutes";
+import Error from "../Pages/Error/Error";
 
 export const router = createBrowserRouter([
     {
         path:'/',
         Component: RootLayout,
+        errorElement: <Error></Error>,
         children:[
             {
                 index: true,
@@ -51,6 +53,7 @@ export const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
+        errorElement: <Error></Error>,
         children:[
             {
                 index:true,

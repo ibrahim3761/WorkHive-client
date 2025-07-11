@@ -20,19 +20,22 @@ const AddTask = () => {
     formState: { errors },
   } = useForm();
 
+
   const handleImageUpload = async (e) => {
     const image = e.target.files[0];
     const formData = new FormData();
-    formData.append("image", image);
-
+    formData.append("file", image);
+    formData.append(
+      "upload_preset",
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    );
     const res = await axios.post(
-      `https://api.imgbb.com/1/upload?key=${
-        import.meta.env.VITE_image_upload_key
-      }`,
+      `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+      }/image/upload`,
       formData
     );
-
-    setImageUrl(res.data.data.url);
+    setImageUrl(res.data.secure_url);
   };
 
   const onSubmit = async (data) => {
@@ -72,12 +75,14 @@ const AddTask = () => {
     if (res.data.insertedId) {
       await axiosSecure.patch("/users/deduct-coins", {
         email: user.email,
-        amount: totalPay/10,
+        amount: totalPay / 10,
         coins: totalPay,
         taskId: res.data.insertedId,
       });
 
-      await queryClient.invalidateQueries({ queryKey: ["userInfo", user.email] });
+      await queryClient.invalidateQueries({
+        queryKey: ["userInfo", user.email],
+      });
 
       Swal.fire({
         icon: "success",

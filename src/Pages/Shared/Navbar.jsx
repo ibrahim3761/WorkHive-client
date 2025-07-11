@@ -24,7 +24,7 @@ const Navbar = () => {
       return res.data;
     },
   });
-
+  // work-hive-image-storage
   console.log(isError);
 
   if (isLoading) {
@@ -167,9 +167,10 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-xl font-bold text-blue-900 hover:text-yellow-500 transition"
+          className="text-2xl font-bold"
         >
-          WorkHive
+          <span className="text-yellow-500 ">Work</span>
+          <span className="text-blue-700">Hive</span>
         </Link>
       </div>
 
