@@ -29,9 +29,23 @@ const TaskDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!submissionDetail.trim()) {
       return Swal.fire("Warning", "Submission detail is required", "warning");
     }
+
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to submit this task now?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, submit it!",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#2563eb",
+      cancelButtonColor: "red",
+    });
+
+    if (!confirm.isConfirmed) return;
 
     const submission = {
       task_id: task._id,
@@ -49,7 +63,11 @@ const TaskDetails = () => {
     const res = await axiosSecure.post("/submissions", submission);
 
     if (res.data.insertedId) {
-      Swal.fire("Success", "Submission Successful", "success");
+      Swal.fire(
+        "Submitted!",
+        "Your task was submitted successfully.",
+        "success"
+      );
       navigate("/dashboard/tasklist");
     }
   };
@@ -66,9 +84,9 @@ const TaskDetails = () => {
     <div className="max-w-7xl mx-auto md:p-4">
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-6 transition-colors"
+        className="inline-flex mb-2 items-center gap-2 text-sm font-medium text-blue-600 border border-blue-600 px-4 py-2 rounded-md transition duration-200 hover:bg-blue-50 hover:text-blue-800"
       >
-        <FiArrowLeft /> Back to tasks
+        <FiArrowLeft /> Back to Tasks
       </button>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
