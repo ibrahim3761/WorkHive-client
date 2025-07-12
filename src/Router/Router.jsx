@@ -21,6 +21,7 @@ import BuyerRoutes from "../Provider/BuyerRoutes";
 import AdminRoutes from "../Provider/AdminRoutes";
 import WorkerRoutes from "../Provider/WorkerRoutes";
 import Error from "../Pages/Error/Error";
+import TaskDetails from "../Pages/Dashboard/WorkerDash/TaskList/TaskDetails";
 
 export const router = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
             {
                 path: "tasklist",
                 element:<WorkerRoutes><TaskList></TaskList></WorkerRoutes>
+            },
+            {
+                path: "task/:id",
+                element: <WorkerRoutes><TaskDetails></TaskDetails></WorkerRoutes>
             },
             {
                 path: "my-submissions",
