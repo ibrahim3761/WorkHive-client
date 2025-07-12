@@ -3,15 +3,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import { Link } from "react-router";
+import { FaCoins, FaUser, FaCalendarAlt, FaUsers } from "react-icons/fa";
 
 const TaskList = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const {
-    data: tasks = [],
-    isLoading,
-  } = useQuery({
+  const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["availableTasks", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -22,48 +20,89 @@ const TaskList = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-xl"></span>
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+        Available Tasks
+      </h2>
+
       {tasks.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-xl shadow-md">
-          <h3 className="text-xl font-semibold text-gray-700">
-            🚫 No Tasks Available Right Now
-          </h3>
-          <p className="text-gray-500 mt-2">Please check back later.</p>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
+          <div className="max-w-md mx-auto">
+            <div className="text-6xl mb-4">📭</div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              No Tasks Available
+            </h3>
+            <p className="text-gray-600">
+              There are currently no tasks available. Please check back later.
+            </p>
+          </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tasks.map((task) => (
             <div
               key={task._id}
-              className="bg-white shadow rounded p-4 flex flex-col justify-between"
+              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
             >
-              <div>
-                <h3 className="text-lg font-bold text-blue-800">
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
                   {task.task_title}
                 </h3>
-                <p className="text-sm text-gray-600">
-                  Buyer: {task.buyer_name}
-                </p>
-                <p className="text-sm">Pay: ${task.payable_amount}</p>
-                <p className="text-sm">
-                  Deadline:{" "}
-                  {new Date(task.completion_date).toLocaleDateString()}
-                </p>
-                <p className="text-sm">Slots Left: {task.required_workers}</p>
+
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <FaUser className="text-blue-500" />
+                    <span>
+                      Buyer:{" "}
+                      <span className="font-medium">{task.buyer_name}</span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <FaCoins className="text-yellow-500" />
+                    <span>
+                      Pay:{" "}
+                      <span className="font-medium">
+                        {task.payable_amount} coins
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <FaCalendarAlt className="text-blue-500" />
+                    <span>
+                      Deadline:{" "}
+                      <span className="font-medium">
+                        {new Date(task.completion_date).toLocaleDateString()}
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <FaUsers className="text-blue-500" />
+                    <span>
+                      Slots:{" "}
+                      <span className="font-medium">
+                        {task.required_workers}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                <Link
+                  to={`/dashboard/task/${task._id}`}
+                  className="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  View Details
+                </Link>
               </div>
-              <Link
-                to={`/dashboard/task/${task._id}`}
-                className="btn btn-sm bg-blue-600 text-white mt-3"
-              >
-                View Details
-              </Link>
             </div>
           ))}
         </div>
