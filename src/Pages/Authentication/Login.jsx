@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import useAxios from "../../Hooks/useAxios";
 import Swal from "sweetalert2";
-
+import { FcGoogle } from "react-icons/fc";
 const Login = () => {
   const {
     register,
@@ -164,36 +164,11 @@ const Login = () => {
         <div className="divider">OR</div>
 
         {/* Google Login */}
-        <button
-          type="button"
+       <button
           onClick={handleGoogleLogin}
-          className="btn btn-outline w-full"
+          className="mt-4 w-full flex items-center justify-center border py-2 rounded-lg hover:bg-amber-100 gap-2 cursor-pointer"
         >
-          <svg
-            aria-label="Google logo"
-            width="20"
-            height="20"
-            viewBox="0 0 512 512"
-            xmlns="http://www.w3.org/2000/svg"
-            className="mr-2"
-          >
-            <path
-              fill="#4285f4"
-              d="M432 256c0-17-2-34-6-50H256v94h99c-4 23-17 43-36 57v47h58c34-31 55-77 55-148z"
-            />
-            <path
-              fill="#34a853"
-              d="M256 512c69 0 127-23 169-63l-58-47c-27 18-61 28-111 28-85 0-156-57-182-134H15v52c42 83 129 139 241 139z"
-            />
-            <path
-              fill="#fbbc04"
-              d="M74 314c-10-29-10-60 0-88V174H15c-18 36-29 77-29 122s11 86 29 122l59-47z"
-            />
-            <path
-              fill="#ea4335"
-              d="M256 100c37 0 70 13 96 38l72-72C381 24 324 0 256 0 144 0 57 56 15 139l59 47c26-77 97-134 182-134z"
-            />
-          </svg>
+          <FcGoogle className="text-xl" />
           Login with Google
         </button>
       </form>

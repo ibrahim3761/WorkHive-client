@@ -11,7 +11,6 @@ const Navbar = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  console.log(user?.email);
   const {
     data: userData = {},
     isLoading,
@@ -24,8 +23,7 @@ const Navbar = () => {
       return res.data;
     },
   });
-  // work-hive-image-storage
-  console.log(isError);
+ 
 
   if (isLoading) {
     return (
