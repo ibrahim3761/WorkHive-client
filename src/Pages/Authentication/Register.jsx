@@ -76,6 +76,7 @@ const Register = () => {
 
   return (
     <div className="max-w-md mx-auto mt-12 p-6 bg-white shadow rounded-lg">
+      <title>Work Hive || Register</title>
       <h2 className="text-3xl font-bold text-center mb-2">Create an Account</h2>
       <p className="text-center text-gray-500 mb-6">Register to WorkHive</p>
 

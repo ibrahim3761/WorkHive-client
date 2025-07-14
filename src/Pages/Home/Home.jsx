@@ -7,6 +7,7 @@ import ExtraSections from './ExtraSections ';
 const Home = () => {
     return (
         <div>
+            <title>Work Hive || Home</title>
             {/* banner */}
             <section className=''>
                 <Banner></Banner>

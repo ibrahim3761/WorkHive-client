@@ -92,6 +92,7 @@ const Login = () => {
 
   return (
     <div className="max-w-md mx-auto mt-12 p-6 bg-white shadow rounded-lg">
+      <title>Work Hive || Login</title>
       <h2 className="text-3xl font-bold text-center mb-2">Welcome Back</h2>
       <p className="text-center text-gray-500 mb-6">Login to WorkHive</p>
 

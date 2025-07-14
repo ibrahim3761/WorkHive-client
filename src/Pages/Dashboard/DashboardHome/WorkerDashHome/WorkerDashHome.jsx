@@ -36,6 +36,7 @@ const WorkerDashHome = () => {
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-8">
+      <title>Work Hive || Worker Dashboard</title>
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Submissions Card */}

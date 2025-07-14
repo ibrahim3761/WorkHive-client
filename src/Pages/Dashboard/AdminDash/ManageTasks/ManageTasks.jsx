@@ -59,6 +59,7 @@ const ManageTasks = () => {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
+      <title>Work Hive || Manage Tasks</title>
       <h2 className="text-3xl font-bold text-blue-900 mb-6 text-center">
         Manage All Tasks
       </h2>

@@ -5,6 +5,7 @@ import { AlertTriangle } from "lucide-react"; // Lucide equivalent of FaExclamat
 const Error = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 text-center px-4">
+      <title>Work Hive || Error</title>
       <AlertTriangle className="w-16 h-16 text-yellow-500 mb-4" />
       <h1 className="text-4xl font-bold text-gray-800 mb-2">Oops! Page Not Found</h1>
       <p className="text-gray-600 mb-6">

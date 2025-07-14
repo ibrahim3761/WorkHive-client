@@ -111,6 +111,7 @@ const PurchaseForm = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      <title>Work Hive || Purchase Coins</title>
       <h2 className="text-2xl font-bold text-center mb-8 text-blue-800">
         Select a Coin Package
       </h2>

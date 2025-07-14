@@ -73,6 +73,7 @@ const AdminDashHome = () => {
 
   return (
     <div className="p-6 space-y-10">
+      <title>Work Hive || Admin</title>
       {/* Stats Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-blue-100 p-6 rounded-xl text-center shadow-md space-y-2">

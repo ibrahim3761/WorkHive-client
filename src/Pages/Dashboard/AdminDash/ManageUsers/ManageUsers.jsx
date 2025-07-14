@@ -59,6 +59,7 @@ const ManageUsers = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-blue-900 mb-4">Manage Users</h2>
+      <title>Work Hive || Manage Users</title>
 
       {/* 🔍 Search Bar */}
       <div className="mb-4">

@@ -107,6 +107,7 @@ const BuyerDashHome = () => {
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-8">
+      <title>Work Hive || Buyer Dashboard</title>
       {/* Dashboard Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>

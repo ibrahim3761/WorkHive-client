@@ -82,6 +82,7 @@ const TaskDetails = () => {
 
   return (
     <div className="max-w-7xl mx-auto md:p-4">
+      <title>Work Hive || Task Details</title>
       <button
         onClick={() => navigate(-1)}
         className="inline-flex mb-2 items-center gap-2 text-sm font-medium text-blue-600 border border-blue-600 px-4 py-2 rounded-md transition duration-200 hover:bg-blue-50 hover:text-blue-800"

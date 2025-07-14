@@ -5,6 +5,7 @@ import { Lock } from 'lucide-react';
 const Forbidden = () => {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
+            <title>Work Hive || Forbidden</title>
             <div className="bg-white p-8 rounded-2xl shadow-md text-center max-w-sm">
                 <div className="flex justify-center mb-4">
                     <Lock className="w-16 h-16 text-red-500" />

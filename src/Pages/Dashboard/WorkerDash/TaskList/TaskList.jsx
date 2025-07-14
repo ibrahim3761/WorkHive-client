@@ -28,6 +28,7 @@ const TaskList = () => {
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto">
+      <title>Work Hive || Task List</title>
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
         Available Tasks
       </h2>

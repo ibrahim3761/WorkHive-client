@@ -97,6 +97,7 @@ const AddTask = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4">
+      <title>Work Hive || Add Task</title>
       <h2 className="text-3xl font-bold mb-6 text-blue-800">Add New Task</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}

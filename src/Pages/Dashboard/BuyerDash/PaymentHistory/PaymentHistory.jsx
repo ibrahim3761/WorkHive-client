@@ -32,6 +32,7 @@ const PaymentHistory = () => {
 
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto">
+      <title>Work Hive || Payment History</title>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
           Payment History

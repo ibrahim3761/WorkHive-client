@@ -26,6 +26,7 @@ const Profile = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md text-center">
+      <title>Work Hive || Profile</title>
       <div className="flex flex-col items-center">
         <img
           src={userData?.photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
