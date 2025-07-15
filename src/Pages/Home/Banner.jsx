@@ -36,12 +36,25 @@ const Banner = () => {
                 Welcome to <span className="text-yellow-400">WorkHive</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl mb-6 text-blue-100">
-                Where micro tasks turn into meaningful earnings
+                The premier platform for microtasking that connects businesses with a global workforce
               </p>
-              <button className="group bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold text-sm sm:text-base px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                Get Started
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </button>
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                  <h3 className="text-yellow-300 font-semibold mb-2">For Workers</h3>
+                  <p className="text-sm text-blue-100">
+                    Earn money by completing simple tasks in your spare time
+                  </p>
+                </div>
+                <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                  <h3 className="text-yellow-300 font-semibold mb-2">For Businesses</h3>
+                  <p className="text-sm text-blue-100">
+                    Get your microtasks completed quickly by our global community
+                  </p>
+                </div>
+              </div>
+              <div className="mt-8 text-blue-100 text-sm">
+                <p>Join over 500,000 users worldwide who are already benefiting from our platform</p>
+              </div>
             </div>
           </div>
         </SwiperSlide>
@@ -56,15 +69,34 @@ const Banner = () => {
             </div>
             <div className="relative z-10 max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                Earn <span className="text-blue-800">Coins</span> Doing Simple Tasks
+                How <span className="text-blue-800">WorkHive</span> Works
               </h2>
-              <p className="text-base sm:text-lg md:text-xl mb-6 text-blue-800">
-                Work anywhere, anytime — just a few clicks away
-              </p>
-              <button className="group bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                Explore Tasks
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </button>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div className="bg-white/30 p-4 rounded-lg">
+                  <div className="text-blue-800 font-bold text-2xl mb-2">1</div>
+                  <h3 className="font-semibold mb-2">Browse Tasks</h3>
+                  <p className="text-sm">
+                    Find tasks that match your skills and availability
+                  </p>
+                </div>
+                <div className="bg-white/30 p-4 rounded-lg">
+                  <div className="text-blue-800 font-bold text-2xl mb-2">2</div>
+                  <h3 className="font-semibold mb-2">Complete Work</h3>
+                  <p className="text-sm">
+                    Follow instructions and submit your completed work
+                  </p>
+                </div>
+                <div className="bg-white/30 p-4 rounded-lg">
+                  <div className="text-blue-800 font-bold text-2xl mb-2">3</div>
+                  <h3 className="font-semibold mb-2">Get Paid</h3>
+                  <p className="text-sm">
+                    Receive payment instantly upon approval
+                  </p>
+                </div>
+              </div>
+              <div className="mt-8 text-blue-800/80 text-sm">
+                <p>Tasks range from data entry to content moderation and more</p>
+              </div>
             </div>
           </div>
         </SwiperSlide>
@@ -79,15 +111,36 @@ const Banner = () => {
             </div>
             <div className="relative z-10 max-w-3xl mx-auto animate-fade-in-up">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                Post Tasks, Reach Workers <span className="text-yellow-400">Instantly</span>
+                Why Choose <span className="text-yellow-400">WorkHive</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl mb-6 text-blue-100">
-                Post your micro jobs and find workers worldwide
-              </p>
-              <button className="group bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold text-sm sm:text-base px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                Post a Task
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </button>
+              <ul className="text-left max-w-md mx-auto space-y-3 mb-8">
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Flexible work hours that fit your schedule</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>No experience required for most tasks</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Instant payments with multiple withdrawal options</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>24/7 customer support</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-yellow-400 mr-2">✓</span>
+                  <span>Secure and verified platform</span>
+                </li>
+              </ul>
+              <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm max-w-md mx-auto">
+                <h3 className="text-yellow-300 font-semibold mb-2">New Feature</h3>
+                <p className="text-sm text-blue-100">
+                  Our new skill matching algorithm helps you find the most suitable tasks based on your profile
+                </p>
+              </div>
             </div>
           </div>
         </SwiperSlide>
