@@ -5,7 +5,14 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { FiUser, FiMail, FiAward, FiDollarSign, FiUpload, FiSave } from "react-icons/fi";
+import {
+  FiUser,
+  FiMail,
+  FiAward,
+  FiDollarSign,
+  FiUpload,
+  FiSave,
+} from "react-icons/fi";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -41,7 +48,9 @@ const Profile = () => {
     try {
       setUploading(true);
       const res = await axios.post(
-        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+        }/image/upload`,
         formData
       );
       setProfilePic(res.data.secure_url);
@@ -66,7 +75,10 @@ const Profile = () => {
 
   const updateMutation = useMutation({
     mutationFn: async (updatedData) => {
-      return await axiosSecure.patch(`/users/update/${user.email}`, updatedData);
+      return await axiosSecure.patch(
+        `/users/update/${user.email}`,
+        updatedData
+      );
     },
     onSuccess: () => {
       Swal.fire({
@@ -98,8 +110,8 @@ const Profile = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
       </div>
     );
   }
@@ -122,7 +134,9 @@ const Profile = () => {
           <label className="absolute inset-0 bg-black bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
             <div className="text-center">
               <FiUpload className="text-white text-2xl mx-auto" />
-              <span className="text-white text-xs mt-1 block">Change Photo</span>
+              <span className="text-white text-xs mt-1 block">
+                Change Photo
+              </span>
             </div>
             <input
               type="file"
@@ -134,9 +148,25 @@ const Profile = () => {
         </div>
         {uploading && (
           <p className="mt-2 text-sm text-blue-600 flex items-center justify-center gap-1">
-            <svg className="animate-spin h-4 w-4 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <svg
+              className="animate-spin h-4 w-4 text-blue-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
             </svg>
             Uploading...
           </p>
@@ -203,9 +233,25 @@ const Profile = () => {
         >
           {updateMutation.isLoading ? (
             <>
-              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
               </svg>
               Saving...
             </>
