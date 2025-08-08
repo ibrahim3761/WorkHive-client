@@ -151,7 +151,7 @@ const Navbar = () => {
             )}
             <li>
               <a
-                href="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-ibrahim3761"
+                href="https://github.com/ibrahim3761/WorkHive-client.git"
                 target="_blank"
                 rel="noreferrer"
                 className="btn bg-blue-900 text-yellow-400 w-full mt-1"
