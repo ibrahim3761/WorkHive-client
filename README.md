@@ -6,15 +6,6 @@ Welcome to **WorkHive**, a dynamic platform that connects Buyers and Workers thr
 
 ---
 
-## 🔐 Admin Login Credentials
-
-- **Email:** mdibrahimabdullah10@gmail.com  
-- **Password:** A376146z
-
-> Use this to explore the Admin Dashboard functionalities.
-
----
-
 ## 🌟 Key Features
 
 1. **Role-based Dashboards**
@@ -62,6 +53,5 @@ Welcome to **WorkHive**, a dynamic platform that connects Buyers and Workers thr
 
 Login as a **Worker**, **Buyer**, or use the provided **Admin account** to experience the full functionality of the platform.
 
----
 
 
