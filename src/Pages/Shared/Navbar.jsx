@@ -14,7 +14,6 @@ const Navbar = () => {
   const {
     data: userData = {},
     isLoading,
-    isError,
   } = useQuery({
     queryKey: ["userData", user?.email],
     enabled: !!user?.email,
@@ -33,11 +32,11 @@ const Navbar = () => {
     );
   }
 
-  if (isError) {
-    return (
-      <div className="text-center text-red-500">Failed to load profile.</div>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <div className="text-center text-red-500">Failed to load profile.</div>
+  //   );
+  // }
 
   const handleLogOut = () => {
     logOut()
@@ -93,7 +92,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-white shadow-sm px-4 md:px-8">
+    <div className="navbar bg-white shadow-sm px-4 md:px-8 fixed top-0 z-50">
       {/* Left: Logo and Mobile Hamburger */}
       <div className="navbar-start">
         {/* Mobile Dropdown */}
@@ -206,7 +205,7 @@ const Navbar = () => {
           href="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-ibrahim3761"
           target="_blank"
           rel="noreferrer"
-          className="btn bg-blue-900 text-yellow-400"
+          className="btn bg-blue-900 text-yellow-400 hidden md:block md:inline-flex"
         >
           Join as Developer
         </a>

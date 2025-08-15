@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
-import { FaCoins, FaUser, FaCalendarAlt, FaCheckCircle, FaHourglassHalf, FaTimesCircle } from "react-icons/fa";
+import { FaCoins, FaUser, FaCalendarAlt, FaCheckCircle, FaHourglassHalf, FaTimesCircle, FaFileAlt } from "react-icons/fa";
 
 const MySubmissions = () => {
   const { user } = useAuth();
