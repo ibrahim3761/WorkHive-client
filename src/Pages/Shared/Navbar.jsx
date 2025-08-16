@@ -11,10 +11,7 @@ const Navbar = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  const {
-    data: userData = {},
-    isLoading,
-  } = useQuery({
+  const { data: userData = {}, isLoading } = useQuery({
     queryKey: ["userData", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -22,7 +19,6 @@ const Navbar = () => {
       return res.data;
     },
   });
- 
 
   if (isLoading) {
     return (
@@ -51,6 +47,18 @@ const Navbar = () => {
 
   const navLinks = (
     <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 font-semibold border-b-2 border-yellow-500 pb-1"
+              : "text-blue-900 hover:text-yellow-500 pb-1"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
       {user && (
         <>
           <li>
@@ -73,7 +81,6 @@ const Navbar = () => {
               </span>
             </span>
           </li>
-
           <li>
             <NavLink
               to="/profile"
@@ -88,6 +95,19 @@ const Navbar = () => {
           </li>
         </>
       )}
+
+      <li>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
+            isActive
+              ? "text-yellow-500 font-semibold border-b-2 border-yellow-500 pb-1"
+              : "text-blue-900 hover:text-yellow-500 pb-1"
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
     </>
   );
 
@@ -162,10 +182,7 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold"
-        >
+        <Link to="/" className="text-2xl font-bold">
           <span className="text-yellow-500 ">Work</span>
           <span className="text-blue-700">Hive</span>
         </Link>
