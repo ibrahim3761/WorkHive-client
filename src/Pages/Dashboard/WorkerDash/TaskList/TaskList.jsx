@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
@@ -8,6 +8,7 @@ import { FaCoins, FaUser, FaCalendarAlt, FaUsers } from "react-icons/fa";
 const TaskList = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const [sortOrder, setSortOrder] = useState("asc"); // default: ascending
 
   const { data: tasks = [], isLoading } = useQuery({
     queryKey: ["availableTasks", user?.email],
@@ -26,14 +27,41 @@ const TaskList = () => {
     );
   }
 
+  // sort tasks
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.payable_amount - b.payable_amount;
+    } else {
+      return b.payable_amount - a.payable_amount;
+    }
+  });
+
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto">
       <title>Work Hive || Task List</title>
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-        Available Tasks
-      </h2>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+          Available Tasks
+        </h2>
 
-      {tasks.length === 0 ? (
+        {/* Sort Dropdown */}
+        <div className="flex items-center gap-2">
+          <label htmlFor="sort" className="text-gray-700 font-medium">
+            Sort by Price:
+          </label>
+          <select
+            id="sort"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+            className="border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      {sortedTasks.length === 0 ? (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 text-center">
           <div className="max-w-md mx-auto">
             <div className="text-6xl mb-4">📭</div>
@@ -47,7 +75,7 @@ const TaskList = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tasks.map((task) => (
+          {sortedTasks.map((task) => (
             <div
               key={task._id}
               className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
