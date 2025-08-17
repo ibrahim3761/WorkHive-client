@@ -22,6 +22,7 @@ import AdminRoutes from "../Provider/AdminRoutes";
 import WorkerRoutes from "../Provider/WorkerRoutes";
 import Error from "../Pages/Error/Error";
 import TaskDetails from "../Pages/Dashboard/WorkerDash/TaskList/TaskDetails";
+import AboutUS from "../Pages/AboutUS/AboutUS";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path:"forbidden",
                 Component: Forbidden
+            },
+            {
+                path:"about-us",
+                Component: AboutUS
             }
         ]
     },
