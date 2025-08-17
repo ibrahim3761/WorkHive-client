@@ -107,6 +107,10 @@ export const router = createBrowserRouter([
             {
                 path: "manage-tasks",
                 element: <AdminRoutes><ManageTasks></ManageTasks></AdminRoutes>
+            },
+            {
+                path:"profile",
+                element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
             }
         ]
     }

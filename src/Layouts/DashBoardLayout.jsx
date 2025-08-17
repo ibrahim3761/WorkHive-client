@@ -228,6 +228,9 @@ const DashBoardLayout = () => {
               </li>
             </>
           )}
+          <li>
+            <NavLink to="/dashboard/profile">👤 Profile</NavLink>
+          </li>
         </ul>
       </div>
     </div>
